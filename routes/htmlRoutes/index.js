@@ -1,12 +1,16 @@
 // ========================== dependencies start here ==================================================== //
 const router = require('express').Router();
-
-// employ Router by using the module exported from notes.js
-const notesRoutes = require('../apiRoutes/notesRoutes');
-
+const path = require('path');
 // ========================== dependencies end here ==================================================== //
 
+// route that returns 'index.html'
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/index.html'));
+});
 
-router.use(notesRoutes);
+// route that returns 'notes.html'
+router.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/notes.html'));
+});
 
 module.exports = router;

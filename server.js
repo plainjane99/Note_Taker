@@ -14,8 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 
-// bring in database data
-const { notes } = require('./db/db');
+// use files from these directories
+const htmlRoutes = require('./routes/htmlRoutes');
+
 // ========================== dependencies end here ==================================================== //
 
 // make certain files readily available and to not gate it behind a server endpoint
@@ -23,12 +24,15 @@ const { notes } = require('./db/db');
 // files in public include all html, css, js for front end
 app.use(express.static('public'));
 
+// uses modularized html routes
+app.use('/', htmlRoutes);
+
 // ========================== routes start here ========================== //
 
 // route that returns 'notes.html'
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
-});
+// app.get('/notes', (req, res) => {
+//     res.sendFile(path.join(__dirname, './public/notes.html'));
+// });
   
 // ========================== routes end here ========================== //
 
