@@ -1,4 +1,4 @@
-// ========================== dependencies start here ========================== //
+// ========================== dependencies start here ==================================================== //
 const express = require('express');
 const path = require('path');
 
@@ -14,9 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 
-// use declared routes in modularized files
-// const apiRoutes = require('./routes/apiRoutes');
-// ========================== dependencies end here ========================== //
+// bring in database data
+const { notes } = require('./db/db');
+// ========================== dependencies end here ==================================================== //
 
 // make certain files readily available and to not gate it behind a server endpoint
 // this makes all of the files in the public directory available
@@ -24,12 +24,6 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // ========================== routes start here ========================== //
-
-// route that returns 'index.html'
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
 
 // route that returns 'notes.html'
 app.get('/notes', (req, res) => {
