@@ -57,8 +57,13 @@ const renderActiveNote = () => {
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
-    noteText.value = activeNote.title;
+    noteText.value = activeNote.text;
   } else {
+    // added this to remove readonly //
+    noteTitle.removeAttribute('readonly');
+    noteText.removeAttribute('readonly');
+    // added this to remove readonly //
+    console.log("entered the else");
     noteTitle.value = '';
     noteText.value = '';
   }
