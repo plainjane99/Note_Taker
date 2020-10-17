@@ -37,4 +37,28 @@ router.post('/notes', (req, res) => {
     res.json(dbNotes);
 });
 
+router.delete('/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+
+    for (let i = 0; i < dbNotes.length;) {
+        if (noteId != dbNotes[i].id) {
+            i++;
+        }
+        else {
+            dbNotes.splice(i, 1);
+
+            // rewrite array to database
+            fs.writeFileSync(
+                path.join(__dirname, '../../db/db.json'),
+                JSON.stringify(dbNotes, null, 2)
+            );
+
+            // return array to display task titles minus deleted task
+            res.json(dbNotes);
+
+        }
+    }
+
+})
+
 module.exports = router;
