@@ -16,7 +16,7 @@ app.use(express.json());
 
 // use files from these directories
 const htmlRoutes = require('./routes/htmlRoutes');
-
+const apiRoutes = require('./routes/apiRoutes');
 // ========================== dependencies end here ==================================================== //
 
 // make certain files readily available and to not gate it behind a server endpoint
@@ -24,17 +24,9 @@ const htmlRoutes = require('./routes/htmlRoutes');
 // files in public include all html, css, js for front end
 app.use(express.static('public'));
 
-// uses modularized html routes
+// uses modularized html and api routes
 app.use('/', htmlRoutes);
-
-// ========================== routes start here ========================== //
-
-// route that returns 'notes.html'
-// app.get('/notes', (req, res) => {
-//     res.sendFile(path.join(__dirname, './public/notes.html'));
-// });
-  
-// ========================== routes end here ========================== //
+app.use('/api', apiRoutes);
 
 // app listening
 // this creates a server that listens on designated port
