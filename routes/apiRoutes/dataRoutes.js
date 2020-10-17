@@ -10,9 +10,9 @@ router.get('/notes', (req, res) => {
 });
 
 router.post('/notes', (req, res) => {
-    console.log(req.body);
     const newNote = req.body;
     dbNotes.push(newNote);
+    res.json(dbNotes);
 })
 
 module.exports = router;
